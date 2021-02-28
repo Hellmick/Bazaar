@@ -9,9 +9,9 @@ class Config:
         ['true', 'on', '1']
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    BLOG_MAIL_SUBJECT_PREFIX = '[FlaskBlog]'
-    BLOG_MAIL_SENDER = 'FlaskBlog Admin <flaskblog@example.com>'
-    BLOG_ADMIN = os.environ.get('FLASKBLOG_ADMIN')
+    FLASKY_MAIL_SUBJECT_PREFIX = '[FlaskBlog]'
+    FLASKY_MAIL_SENDER = 'FlaskBlog Admin <flaskblog@example.com>'
+    FLASKY_ADMIN = os.environ.get('FLASKBLOG_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     @staticmethod
@@ -21,16 +21,16 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+        'sqlite:///' + os.path.join(basedir, 'data-dev.db')
 
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+        'sqlite:///' + os.path.join(basedir, 'data.db')
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+        'sqlite:///' + os.path.join(basedir, 'data.db')
 
 config = {
     'development': DevelopmentConfig,
