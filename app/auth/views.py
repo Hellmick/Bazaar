@@ -73,11 +73,12 @@ def unconfirmed():
         return redirect(url_for('main.index'))
     return render_template('auth/unconfirmed.html')
 
-@auth.route('/confirm')
-@login_required
-def resend_confirmation():
+@auth.route('/resend_token')
+def resend_token():
+    if current_user.is_anonymous or current_user.confirmed:
+        return redirect(url_for('main.index'))
     token = current_user.generate_confirmation_token()
     send_email(current_user.email, 'Confirm Your Account',
             'auth/email/confirm', user=current_user, token=token)
     flash('A new confirmation email has been sent to you.')
-    return redirect(url_for('unconfirmed'))
+    return redirect(url_for('auth.unconfirmed'))
