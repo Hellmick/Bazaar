@@ -28,4 +28,22 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError('Username is taken.')
+
+class ChangePassword(FlaskForm):
+    password = PasswordField('Old password', validators=[DataRequired()])
+    new_password = PasswordField('New password', validators=[DataRequired()])
+    new_password2 = PasswordField('Confirm new password', validators=[
+        DataRequired(), EqualTo('new_password', message='Passwords must match')])
+    submit = SubmitField('Change password')
+
+class ForgotPassword(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()])
+    submit = SubmitField('Submit')
+
+class ResetPassword(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Confirm password', validators=[
+        DataRequired(), EqualTo('password', message='Passwords must match.')])
+    submit = SubmitField('Submit')
+
             

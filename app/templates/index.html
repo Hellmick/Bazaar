@@ -2,11 +2,17 @@
 
 {% block page_content %}
     <h1>
-    Hello,
     {% if current_user.is_authenticated %}
-        {{ current_user.username }}
+        Hello, {{ current_user.username }}
     {% else %}
-        Stranger
+    <div class='text-center'>
+        <img class='mx-auto d-block rounded img-fluid index-image' src="{{ url_for('static', filename='Bazaar.png') }}"/>
+        <h3>
+            <strong>Bazaar</strong></br>
+            the first and only social networking site</br>
+            on the Internet
+        </h3>
+    </div>
     {% endif %}
     </h1>
 {% endblock %}
