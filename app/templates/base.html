@@ -49,6 +49,7 @@
 
 {% block content %}
 <div class="container">
+    {% block page_title %}{% endblock %}
     <div class="container text-danger text-decoration-none">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}

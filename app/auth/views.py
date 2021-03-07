@@ -18,7 +18,7 @@ def login():
                 next = url_for('main.index')
             return redirect(next)
         flash('Invalid username or password')
-    return render_template('auth/login.html', form=form)
+    return render_template('auth/login.html', form=form, page_title="Login")
 
 from flask_login import logout_user, login_required
 
@@ -43,7 +43,7 @@ def register():
             'auth/email/confirm', user=user, token=token)
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('main.index'))
-    return render_template('auth/register.html', form=form)
+    return render_template('auth/single-form.html', form=form, page_title="Register")
 
 from flask_login import current_user
 
@@ -71,7 +71,7 @@ def before_request():
 def unconfirmed():
     if current_user.is_anonymous or current_user.confirmed:
         return redirect(url_for('main.index'))
-    return render_template('auth/unconfirmed.html')
+    return render_template('auth/single-form.html', page_title="Hello, {{ current_user.username }}!")
 
 @auth.route('/resend_token')
 def resend_token():
@@ -87,7 +87,7 @@ def resend_token():
 @login_required
 def account_management():
     pass
-    return render_template('auth/account-management.html')
+    return render_template('auth/account-management.html', page_title="Account management")
 
 @auth.route('/change_password', methods=['GET', 'POST'])
 @login_required
@@ -100,7 +100,7 @@ def change_password():
             flash('Your password has been changed.')
         else:
             flash('Old password incorrect.')
-    return render_template('auth/change-password.html', form=form)
+    return render_template('auth/single-form.html', form=form, page_title="Change password")
 
 @auth.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
@@ -112,7 +112,7 @@ def forgot_password():
             send_email(user.email, 'Password reset',
                 'auth/email/password-reset', token=token, username=user.username)
             flash('An email with password reset link has been sent to you.')
-    return render_template('auth/forgot-password.html', form=form)
+    return render_template('auth/forgot-password.html', form=form, page_title="Forgot password")
 
 @auth.route('/reset_password/<username>/<token>', methods=['GET', 'POST'])
 def reset_password(username, token):
@@ -124,5 +124,5 @@ def reset_password(username, token):
             flash('Your password has been changed.')
         else:
             flash('Your password reset token is invalid or has expired.')
-    return render_template('auth/reset-password.html', form=form)
+    return render_template('auth/reset-password.html', form=form, page_title="Password reset")
         

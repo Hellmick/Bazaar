@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block page_content %}
+{% block page_title %}
+    <h1 class="page-header">{{ page_title }}</h1>
+{% endblock %}
 
-<h1>Manage your account</h1>
+{% block page_content %}
 
 <div class='container'>
     <h3>Change password</h3>

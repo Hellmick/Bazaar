@@ -6,11 +6,7 @@
 {% endblock %}
 
 {% block page_content %}
-
-<div class="col-md-4">
-<p>To reset your password please give us your email address and then click the link sent to you.</p>
-  {{ wtf.quick_form(form) }}
-</div>
-  
-
+    <div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+    </div>
 {% endblock %}
