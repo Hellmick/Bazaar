@@ -9,8 +9,8 @@ class Config:
         ['true', 'on', '1']
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    BAZAAR_MAIL_SUBJECT_PREFIX = '[Bazaar]'
-    BAZAAR_MAIL_SENDER = 'Bazaar Team <bazaar@gmail.com>'
+    BAZAAR_MAIL_SUBJECT_PREFIX = '[Bazaar] '
+    BAZAAR_MAIL_SENDER = 'Bazaar Team <bazaar.adm2021@gmail.com>'
     BAZAAR_ADMIN = os.environ.get('BAZAAR_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

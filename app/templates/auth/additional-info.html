@@ -6,10 +6,11 @@
 {% endblock %}
 
 {% block page_content %}
-    <div class="col-md-4">
-    {{ wtf.quick_form(form) }}
-    {% block label %}
-        <p class="{% if warning %}text-danger{% endif %} form-label">{{ label }}</p>
-    {% endblock %}
-    </div>
+
+<div class="col-md-4">
+    <p>You can change it later.</p></br>
+    {{ wtf.quick_form(form) }}</br>
+</div>
+  
+
 {% endblock %}

@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError, TextAreaField
+from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
 from ..models import User
 
@@ -46,4 +47,19 @@ class ResetPassword(FlaskForm):
         DataRequired(), EqualTo('password', message='Passwords must match.')])
     submit = SubmitField('Submit')
 
-            
+class ChangeEmail(FlaskForm):
+    email = StringField('New email address', validators=[DataRequired(), Length(1, 64), Email()])
+    submit = SubmitField('Submit')
+
+class DeleteUser(FlaskForm):
+    password = PasswordField('Please enter your password to delete your account', validators=[DataRequired()])
+    submit = SubmitField('Delete account')
+
+class AdditionalInformation(FlaskForm):
+    first_name = StringField('First name', validators=[Length(0, 32)])
+    second_name = StringField('Second name', validators=[Length(0, 32)])
+    last_name = StringField('Last name', validators=[Length(0, 64)])
+    birth_date = DateField('Birth date', format='%Y-%m-%d')
+    location = StringField('Location', validators=[Length(0, 64)])
+    about_me = TextAreaField('About me')
+    submit = SubmitField()

@@ -5,14 +5,22 @@
 {% endblock %}
 
 {% block page_content %}
-
+<div class='container'>
+    <h3>Change user info</h3>
+    <p>To change profile information <a href="{{ url_for('auth.additional_info') }}">click here.</a></p>
+</div>
 <div class='container'>
     <h3>Change password</h3>
     <p>To update your password <a href="{{ url_for('auth.change_password') }}">click here.</a></p> 
 </div>
 <div class='container'>
     <h3>Change email address</h3>
-    <p>To update your email address <a href="{{ url_for('auth.change_password') }}">click here.</a></p> 
+    <p>Your email address is <strong>{{ current_user.email }}</strong></p> 
+    <p>To change your email address <a href="{{ url_for('auth.change_email') }}">click here.</a></p> 
+</div>
+<div class='container'>
+    <h3>Delete account</h3>
+    <p>To delete your account <a href="{{ url_for('auth.delete_user') }}">click here.</a></p> 
 </div>
 
 {% endblock %}

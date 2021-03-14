@@ -1,10 +1,10 @@
 Dear {{ user.username }},
 
-Welcome to Flasky!
+Welcome to Bazaar!
 
 To confirm your account please clink on the following link:
 
-{{ url_for('auth.reset_password', token=token, _external=True) }}
+{{ url_for('auth.confirm', token=token, _external=True) }}
 
 Sincerely,
 

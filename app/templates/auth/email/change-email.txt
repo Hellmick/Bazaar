@@ -1,0 +1,13 @@
+Dear {{ username }},
+
+To change your email address click the following link:
+
+{{ url_for('auth.ch_em', token=token, _external=True) }}
+
+If it wasn't you, please ignore this email.
+
+Sincerely,
+
+The Bazaar Team
+
+Note: Don't reply to this email
